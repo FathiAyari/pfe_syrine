@@ -341,54 +341,48 @@ class _ActiviteScreenState extends State<ActiviteScreen> with TickerProviderStat
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.category,
-                                        size: 16,
-                                        color: Color(0xff7ea4f3),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          "Select Type",
-                                          style: TextStyle(
-                                              fontFamily: "NunitoBold", fontWeight: FontWeight.bold, color: Color(0xff7ea4f3)),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
+                              child: DropdownButtonFormField<String>(
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      width: 1.0,
+                                    ),
                                   ),
-                                  items: types
-                                      .map((item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: TextStyle(
-                                                  fontFamily: "NunitoBold",
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color(0xff7ea4f3)),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: type,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      type = value as String;
-                                    });
-                                  },
-                                  customButton: const Icon(
-                                    Icons.arrow_forward_ios_outlined,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      width: 1.0,
+                                      color: Colors.grey,
+                                    ),
                                   ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  hintText: "Select Type",
                                 ),
+                                items: types
+                                    .map((item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: TextStyle(
+                                        fontFamily: "NunitoBold",
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xff7ea4f3)),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ))
+                                    .toList(),
+                                value: type,
+                                onChanged: (value) {
+                                  setState(() {
+                                    type = value as String;
+                                  });
+                                },
                               ),
                             ),
+
                             RoundedButton(
                               color: activityColor,
                               onPressed: () async {
